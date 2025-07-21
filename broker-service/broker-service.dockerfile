@@ -1,19 +1,7 @@
-FROM golang:alpine3.22 as builder
-
-RUN mkdir /app
-
-COPY . /app
-
-WORKDIR /app
-
-RUN CGO_ENABLED=0 go build -o broker-service ./cmd/api
-
-RUN chmod +x /app/broker-service
-
 FROM alpine:latest
 
 RUN mkdir /app
 
-COPY --from=builder /app/broker-service /app
+COPY brokerApp /app
 
-CMD [ "/app/broker-service" ]
+CMD [ "/app/brokerApp" ]
