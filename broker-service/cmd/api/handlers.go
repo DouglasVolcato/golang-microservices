@@ -9,7 +9,7 @@ import (
 
 type RequestPayload struct {
 	Action string      `json:"action"`
-	Auth   AuthPayload `json:"auth,omitempty"`
+	Auth   AuthPayload `json:"auth"`
 }
 
 type AuthPayload struct {
