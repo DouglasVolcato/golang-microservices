@@ -16,7 +16,7 @@ services:
   authentication-service:
     build:
       context: ./authentication-service
-      dockerfile: ./authentication-service/authentication-service.dockerfile
+      dockerfile: authentication-service.dockerfile
     restart: always
     ports:
       - "8081:80"
@@ -40,4 +40,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: users
     volumes:
-      - ./db-data/:/var/lib/postgresql/data/
+      - postgres-data:/var/lib/postgresql/data/
+
+volumes:
+  postgres-data:
