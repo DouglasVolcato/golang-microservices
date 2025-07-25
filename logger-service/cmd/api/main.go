@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"log"
+	"time"
 
 	"go.mongodb.org/mongo-driver/v2/mongo"
 	"go.mongodb.org/mongo-driver/v2/mongo/options"
@@ -25,6 +27,15 @@ func main() {
 		log.Panic(err)
 	}
 	client = mongoClient
+
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+
+	defer func() {
+		if err = client.Disconnect(ctx); err != nil {
+			panic(err)
+		}
+	}()
 }
 
 func connectToMongo() (*mongo.Client, error) {
@@ -34,6 +45,7 @@ func connectToMongo() (*mongo.Client, error) {
 		Password: "password",
 	})
 	c, err := mongo.Connect(clientOptions)
+
 	if err != nil {
 		log.Panicln("Error connecting:", err)
 		return c, nil
