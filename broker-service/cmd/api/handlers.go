@@ -30,7 +30,7 @@ func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
 func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 	var requestPayload RequestPayload
 
-	err := app.readJSON(w, r, requestPayload)
+	err := app.readJSON(w, r, &requestPayload)
 	if err != nil {
 		app.errorJSON(w, err, http.StatusBadRequest)
 		return
