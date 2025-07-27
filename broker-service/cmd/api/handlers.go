@@ -85,7 +85,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 	}
 
 	var jsonFromService jsonResponse
-	err = json.NewDecoder(request.Body).Decode(&jsonFromService)
+	err = json.NewDecoder(response.Body).Decode(&jsonFromService)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
