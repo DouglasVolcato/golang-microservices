@@ -38,7 +38,7 @@
     const authBrokerBtn = document.getElementById('authBrokerBtn');
     const logBtn = document.getElementById('logBtn');
     const output = document.getElementById('output');
-    const payload = document.getElementById('payload');
+    const sent = document.getElementById('payload');
     const received = document.getElementById('received');
 
     brokerBtn.addEventListener('click', () => {
@@ -49,7 +49,7 @@
         fetch("http://localhost:8080", body)
             .then(res => res.json())
             .then(data => {
-                payload.innerHTML = "Empty post request"
+                sent.innerHTML = "Empty post request"
                 received.innerHTML = JSON.stringify(data, null, 2)
                 if (data.error) {
                     console.log(data.message)
@@ -67,7 +67,7 @@
             action: 'auth',
             auth: {
                 email: "admin@example.com",
-                password: "varysecret"
+                password: "verysecret"
             }
         }
         const headers = new Headers();
@@ -82,7 +82,7 @@
         fetch("http://localhost:8080/handle", body)
             .then(res => res.json())
             .then(data => {
-                payload.innerHTML = JSON.stringify(payload, undefined, 4)
+                sent.innerHTML = JSON.stringify(payload, undefined, 4)
                 received.innerHTML = JSON.stringify(data, undefined, 4)
                 if (data.error) {
                     console.log(data.message)
@@ -99,9 +99,9 @@
     logBtn.addEventListener('click', () => {
         const payload = {
             action: 'log',
-            auth: {
-                email: "admin@example.com",
-                password: "varysecret"
+            log: {
+                name: "Test name",
+                data: "Test data"
             }
         }
         const headers = new Headers();
@@ -116,7 +116,7 @@
         fetch("http://localhost:8080/handle", body)
             .then(res => res.json())
             .then(data => {
-                payload.innerHTML = JSON.stringify(payload, undefined, 4)
+                sent.innerHTML = JSON.stringify(payload, undefined, 4)
                 received.innerHTML = JSON.stringify(data, undefined, 4)
                 if (data.error) {
                     console.log(data.message)
