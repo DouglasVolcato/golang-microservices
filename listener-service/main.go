@@ -16,7 +16,7 @@ func main() {
 		os.Exit(1)
 	}
 	defer rabbitConn.Close()
-	log.Panicln("Connected to RabbitMQ")
+	log.Println("Connected to RabbitMQ")
 }
 
 func connect() (*amqp.Connection, error) {
