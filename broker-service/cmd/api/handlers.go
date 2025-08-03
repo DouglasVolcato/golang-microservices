@@ -69,7 +69,7 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
-	jsonData, err := json.MarshalIndent(a, "", "\t")
+	jsonData, err := json.Marshal(a)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -117,7 +117,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 }
 
 func (app *Config) logItem(w http.ResponseWriter, entry LogPayload) {
-	jsonData, err := json.MarshalIndent(entry, "", "\t")
+	jsonData, err := json.Marshal(entry)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -153,7 +153,7 @@ func (app *Config) logItem(w http.ResponseWriter, entry LogPayload) {
 }
 
 func (app *Config) sendMail(w http.ResponseWriter, msg MailPayload) {
-	jsonData, err := json.MarshalIndent(msg, "", "\t")
+	jsonData, err := json.Marshal(msg)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -212,7 +212,7 @@ func (app *Config) PushToQueue(name string, msg string) error {
 		Data: msg,
 	}
 
-	j, err := json.MarshalIndent(&payload, "", "\t")
+	j, err := json.Marshal(&payload)
 	if err != nil {
 		return err
 	}

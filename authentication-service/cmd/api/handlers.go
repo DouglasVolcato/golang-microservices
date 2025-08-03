@@ -56,7 +56,7 @@ func (app *Config) logRequest(name string, data string) error {
 	entry.Name = name
 	entry.Data = data
 
-	jsonData, err := json.MarshalIndent(entry, "", "\t")
+	jsonData, err := json.Marshal(entry)
 	if err != nil {
 		return err
 	}

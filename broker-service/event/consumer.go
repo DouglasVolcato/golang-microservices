@@ -120,7 +120,7 @@ func handlePayload(payload Payload) {
 }
 
 func logEvent(payload Payload) error {
-	jsonData, err := json.MarshalIndent(payload, "", "\t")
+	jsonData, err := json.Marshal(payload)
 	if err != nil {
 		return err
 	}
