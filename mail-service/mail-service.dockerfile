@@ -2,7 +2,9 @@ FROM alpine:latest
 
 RUN mkdir /app
 
-COPY mailerApp /app
-COPY mailerApp /templates
+COPY mailerApp /app/mailerApp
+COPY templates /app/templates
 
-CMD [ "/app/mailerApp" ]
+WORKDIR /app
+
+CMD [ "./mailerApp" ]
