@@ -16,7 +16,6 @@ func main() {
 		os.Exit(1)
 	}
 	defer rabbitConn.Close()
-	log.Println("Connected to RabbitMQ")
 }
 
 func connect() (*amqp.Connection, error) {
@@ -30,6 +29,7 @@ func connect() (*amqp.Connection, error) {
 			fmt.Println("RabbitMQ not yet ready...")
 			counts++
 		} else {
+			log.Println("Connected to RabbitMQ")
 			connection = c
 			break
 		}
