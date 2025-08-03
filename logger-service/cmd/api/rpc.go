@@ -14,7 +14,7 @@ type RpcPayload struct {
 	Data string
 }
 
-func (r *RpcServer) LongInfo(payload RpcPayload, resp *string) error {
+func (r *RpcServer) LogInfo(payload RpcPayload, resp *string) error {
 	collection := client.Database("logs").Collection("logs")
 
 	_, err := collection.InsertOne(context.TODO(), data.LogEntry{
@@ -28,6 +28,6 @@ func (r *RpcServer) LongInfo(payload RpcPayload, resp *string) error {
 		return err
 	}
 
-	*resp = "Processd payload via RPC: " + payload.Name
+	*resp = "Processed payload via RPC: " + payload.Name
 	return nil
 }

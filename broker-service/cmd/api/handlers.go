@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"net/rpc"
 )
 
 type RequestPayload struct {
@@ -57,7 +58,8 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 		return
 	case "log":
 		// app.logItem(w, requestPayload.Log)
-		app.logEventViaRabbit(w, requestPayload.Log)
+		// app.logEventViaRabbit(w, requestPayload.Log)
+		app.logItemViaRpc(w, requestPayload.Log)
 		return
 	case "mail":
 		app.sendMail(w, requestPayload.Mail)
@@ -223,4 +225,25 @@ func (app *Config) PushToQueue(name string, msg string) error {
 	}
 
 	return nil
+}
+
+func (app *Config) logItemViaRpc(w http.ResponseWriter, l LogPayload) {
+	client, err := rpc.Dial("tcp", "logger-service:5001")
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	var result string
+	err = client.Call("RpcServer.LogInfo", l, &result)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	payload := jsonResponse{
+		Error:   false,
+		Message: result,
+	}
+	app.writeJSON(w, http.StatusAccepted, payload)
 }
