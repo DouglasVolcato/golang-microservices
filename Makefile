@@ -71,3 +71,9 @@ stop:
 	@echo "Stopping front end..."
 	@-pkill -SIGTERM -f "./${FRONT_END_BINARY}"
 	@echo "Stopped front end!"
+
+setup:
+	make stop && make down && make up_build && make up && make start
+
+setdown:
+	make stop && make down
