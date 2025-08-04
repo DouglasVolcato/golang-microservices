@@ -1,13 +1,10 @@
 # 🛠️ golang-microservices
 
 A complete microservices-based system built in **Go**, using a powerful combination of **Docker**, **RabbitMQ**, **gRPC**, **MongoDB**, and **PostgreSQL**. This project showcases a scalable, event-driven architecture designed for learning, testing, and demonstrating best practices in backend development.
----
 
 ## 📌 Overview
 
 This project simulates a production-like backend system where multiple microservices communicate via **gRPC**, **RPC**, and **event-driven messaging**. It includes a web frontend for testing interactions and responses from each service, making it ideal for showcasing service orchestration and backend capabilities.
-
----
 
 ## 🚀 Features
 
@@ -19,8 +16,6 @@ This project simulates a production-like backend system where multiple microserv
 - ✅ Secure authentication workflow
 - ✅ Web frontend for interaction testing
 - ✅ Automated build and setup with `Makefile`
-
----
 
 ## 📐 Architecture
 
@@ -44,8 +39,6 @@ This project simulates a production-like backend system where multiple microserv
 * **RabbitMQ** for decoupled, async events
 * **Databases**: PostgreSQL and MongoDB depending on service
 
----
-
 ## 🧰 Technologies & Tools
 
 | Tool               | Purpose                                  |
@@ -60,8 +53,6 @@ This project simulates a production-like backend system where multiple microserv
 | **Mailhog**        | Test email sending functionality         |
 | **Makefile**       | Project automation                       |
 | **Go-Chi**         | Lightweight HTTP router for the frontend |
-
----
 
 ## 📦 Microservices Description
 
@@ -95,8 +86,6 @@ This project simulates a production-like backend system where multiple microserv
 * Displays EJS templates
 * Contains UI for testing the microservice system
 
----
-
 ## 🧪 How to Run
 
 Make sure you have Docker and Make installed. Then:
@@ -110,8 +99,6 @@ This will:
 * Compile all Go binaries
 * Start all Docker containers (services, RabbitMQ, DBs, Mailhog)
 
----
-
 ## 🛑 How to Stop
 
 To shut everything down and remove volumes/networks:
@@ -120,15 +107,11 @@ To shut everything down and remove volumes/networks:
 make setdown
 ```
 
----
-
 ## 📸 Interface Preview
 
 > Sample frontend page with buttons to trigger events and view logs:
 
 ![Test Page Screenshot](docs/images/test-page.png)
-
----
 
 ## 💡 Skills Demonstrated
 
@@ -140,8 +123,6 @@ make setdown
 * Docker orchestration with Compose
 * Test-driven backend development
 * Integration of frontend with backend services
-
----
 
 ## 📁 Project Structure
 
@@ -160,9 +141,7 @@ golang-microservices/
 └── docs/images/
 ```
 
----
-
-## 📬 Authoe
+## 📬 Author
 
 **Douglas Volcato**
 [GitHub](https://github.com/douglasvolcato)
