@@ -273,7 +273,7 @@ func (app *Config) LogViaGrpc(w http.ResponseWriter, l LogPayload) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	_, err = c.WriteLog(ctx, &logs.LogRequest{
+	res, err := c.WriteLog(ctx, &logs.LogRequest{
 		LogEntry: &logs.Log{
 			Name: l.Name,
 			Data: l.Data,
@@ -287,5 +287,6 @@ func (app *Config) LogViaGrpc(w http.ResponseWriter, l LogPayload) {
 	var payload jsonResponse
 	payload.Error = false
 	payload.Message = "logged"
+	payload.Data = res
 	app.writeJSON(w, http.StatusAccepted, payload)
 }
