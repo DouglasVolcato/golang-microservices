@@ -12,6 +12,7 @@
             <a id="logBtn" class="btn btn-outlined-secondary" href="javascript:void(0)">Test log</a>
             <a id="logRabbitBtn" class="btn btn-outlined-secondary" href="javascript:void(0)">Test log RabbitMQ</a>
             <a id="logRpcBtn" class="btn btn-outlined-secondary" href="javascript:void(0)">Test log RPC</a>
+            <a id="logGrpcBtn" class="btn btn-outlined-secondary" href="javascript:void(0)">Test log gRPC</a>
 
             <div id="output" class="mt-5" style="outline: 1px solid silver; padding: 2em;">
                 <span class="text-muted">Output shows here...</span>
@@ -43,6 +44,7 @@
     const logBtn = document.getElementById('logBtn');
     const logRabbitBtn = document.getElementById('logRabbitBtn');
     const logRpcBtn = document.getElementById('logRpcBtn');
+    const logGrpcBtn = document.getElementById('logGrpcBtn');
 
     const mailBtn = document.getElementById('mailBtn');
     const output = document.getElementById('output');
@@ -60,7 +62,7 @@
                 sent.innerHTML = "Empty post request"
                 received.innerHTML = JSON.stringify(data, null, 2)
                 if (data.error) {
-                    console.log(data.message)
+                    output.innerHTML = `<br><strong>Error:</strong> ${data.message}`
                 } else {
                     output.innerHTML = `<span class="text-success">Response received: ${data.message}</span>`
                 }
@@ -93,7 +95,6 @@
                 sent.innerHTML = JSON.stringify(payload, undefined, 4)
                 received.innerHTML = JSON.stringify(data, undefined, 4)
                 if (data.error) {
-                    console.log(data.message)
                     output.innerHTML = `<br><strong>Error:</strong> ${data.message}`
                 } else {
                     output.innerHTML = `<span class="text-success">Response received: ${data.message}</span>`
@@ -105,7 +106,6 @@
     })
 
     const logRequest = (logType) => {
-        console.log(logType)
         const payload = {
             action: logType,
             log: {
@@ -128,7 +128,6 @@
                 sent.innerHTML = JSON.stringify(payload, undefined, 4)
                 received.innerHTML = JSON.stringify(data, undefined, 4)
                 if (data.error) {
-                    console.log(data.message)
                     output.innerHTML = `<br><strong>Error:</strong> ${data.message}`
                 } else {
                     output.innerHTML = `<span class="text-success">Response received: ${data.message}</span>`
@@ -142,6 +141,7 @@
     logBtn.addEventListener('click', () => logRequest("log"))
     logRabbitBtn.addEventListener('click', () => logRequest("log-rabbitmq"))
     logRpcBtn.addEventListener('click', () => logRequest("log-rpc"))
+    logGrpcBtn.addEventListener('click', () => logRequest("log-grpc"))
 
     mailBtn.addEventListener('click', () => {
         const payload = {
@@ -168,7 +168,6 @@
                 sent.innerHTML = JSON.stringify(payload, undefined, 4)
                 received.innerHTML = JSON.stringify(data, undefined, 4)
                 if (data.error) {
-                    console.log(data.message)
                     output.innerHTML = `<br><strong>Error:</strong> ${data.message}`
                 } else {
                     output.innerHTML = `<span class="text-success">Response received: ${data.message}</span>`
