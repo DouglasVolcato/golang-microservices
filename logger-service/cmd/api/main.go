@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"log-service/data"
-	"net"
 	"net/http"
 	"net/rpc"
 	"time"
@@ -63,24 +62,6 @@ func main() {
 	err = srv.ListenAndServe()
 	if err != nil {
 		log.Panic(err)
-	}
-}
-
-func (app *Config) rpcListen() error {
-	log.Println("Starting RPC server on port ", rpcPort)
-	listen, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", rpcPort))
-	if err != nil {
-		return err
-	}
-	defer listen.Close()
-
-	for {
-		rpcConn, err := listen.Accept()
-		if err != nil {
-			continue
-		}
-
-		go rpc.ServeConn(rpcConn)
 	}
 }
 
